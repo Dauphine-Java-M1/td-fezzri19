@@ -1,0 +1,13 @@
+fezzoua riad
+4-la commande qui permet de voir la verion de maven est mvn -v
+la version de maven instalée  sur la machine est 3.6
+la veleur qu'on doit donner a target est 1.7 car il soit etre compatible avec source
+
+5-groupe id : identifie de manière unique notre  projet parmi tous les projets. Un identifiant de groupe doit suivre les règles de nom de paquet Java. Cela signifie qu'il commence par un nom de domaine inversé qu'on contrôle.
+-artificID : est le nom du pot sans version
+6-le fichier target contient les fichier .class
+
+8-la class path est le chemin qui permet d'acceder au .java
+9- la racine est :<project>
+ExO2:
+1-aucun attribut manifest principal dans target/td00-1.0-SNAPSHOT.jar

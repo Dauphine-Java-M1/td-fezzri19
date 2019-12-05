@@ -1,0 +1,155 @@
+TD 01 : 
+
+Exercice 1) :
+1) Pourquoi cela fonctionne t-il ?
+Cela fonctionne car nous avons crée un point, et que les deux variables de cet objet sont initialisé à Zéro.
+
+2) Que se passe-t-il ?
+La classe TestPoint construit l'objet Point car ces deux classes se trouvent dans le même package, 
+mais ne reconnait pas p.x, et p.y car c'est des champs qui sont privé.
+Comment peut-on y remèdier ?
+On peut y remedier en créant des Accesseurs ou un toString() pour appeler directement : (p.getX(), p.getY()) ou p.toSting().
+
+3) Pourquoi il faut toujours que les champs d’une classe soient privés ?
+il faut déclarer les variables en private de façon à ce que le programme qui instancie la classe ne puisse voir ni modifier ces variables.
+c'est le principe fondamentale du paradigme Objet : l'encapsulation 
+Et pour accéder à ses variables, on crée des assesseurs.
+
+4) Qu’est-ce qu’un accesseur ?  Doit-on le faire ici ?
+Un accesseur est une methode qui nous permet d'écrire et de lire la valeur de la variable d'une classe qu'on instancie.
+Oui, nous y sommes obligé si on veut pouvoir lire ces variables depuis TestPoint.
+
+5) Quel est le problème ?
+Ne compile plus car le constructeut qu'il y dans le main n'est plus valide, 
+et cela revient au fait qu'on en a crée un nouveau qui écrase le constructeur par défaut de la classe Objet.
+
+6) Que se passe-t-il ?
+Ne compile toujours pas, car on change les paramètres sans changer le corps du constructeur.
+
+7) Comment faire ?
+Crée une variable compteur Static, et l'incrémenté dans le constructeur.
+
+8) Comment  le  compilateur  sait  quel constructeur appeler ?
+il regarde la signature de la fonction qui correspont.
+
+9) On crée un toString()
+
+Exercice 2)
+1) true false
+la raison est que, le == compare les références vers les objets et non la valeur de leurs variables. 
+
+3) p1 et p2 réferencent le même objet, c'est pour cela que quand on ajoute p1, ou p2 dans la liste on ajoute le même objet.
+0 pour p1, p2, et -1 pour l'objet p3 qui ne se trouve pas dans la liste car il ne réference pas l'objet.
+Il faut redéfinir equals de la classe Point, pour que list.indexOf() n'utilise plus le == de equals.
+
+Exercice 3) 
+1) Si on  écrit pas de code supplèmentaire, que se passe t il si on dépasse la capacité fixée ?  
+cela provoquera une ArrayIndexOutOfException : 
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 2
+	at fr.dauphine.ja.haouiliahmed.shapes.Ligne.add(Ligne.java:14)
+	at fr.dauphine.ja.haouiliahmed.shapes.Ligne.main(Ligne.java:24)
+Que faire ?
+Il faut catcher l'exception, ou d'au moins la traiter.
+sinon, On teste avant d'ajouter les points si on n'a pas atteint la capacité maximale.
+
+5) Que  se  passe  t-il  si null est  passé  en  argument  à  la  méthode  contains ?
+elle renvoie un true si le tableau possède une case vide,
+elle renvoie un false si le tableau est plein.
+Et  si  on  a  fait  un add(null) avant  ?
+la fonction renvoie true
+
+6) Que  deviennent pointCapacity, nbPoints et contains ?
+pointCapacity : ne sert plus à rien 
+nbPoints : on utilise la méthode .size() de la classe linkedList
+contains : on utilise la méthode .contains(Object e) de la classe linkedList
+
+Exercice 4) 
+5) Quel est le problème ?  
+Qaund on translate le premier cercle, le second cercle se translate aussi, car c'est le même centre.
+Que faire pour l’ éviter ?
+on peut faire une copie du point lors de la création du cercle, 
+ou une copie quand on translate, pour avoir les bonnes valeurs.
+
+6) Quel est le problème si on  écrit une méthode getCenter() renvoyant le centre ?
+Si on translate le point du centre, le cercle se translate aussi.
+On crée une copie du point.
+
+9)  Doit-on en faire une méthode statique ?
+Aucune idée.
+
+Exercice 5) 
+1) non, ce n'est pas intéressant.
+car Ring n'est pas forcement un Circle.
+
+4) Quel est le problème si on fait System.out.println(ring) ?
+On affiche l'adresse en mémoire de l'objet. (fr.dauphine.ja.haouiliahmed.shapes.Ring@4e25154f)
+Il faut créer un toString.
+
+
+TD 02 :
+Exercice 1) 
+1) La fonction de chacunes des classes : 
+
+Graphics : La classe Graphics est la classe de base abstraite pour tous les contextes graphiques 
+permettant à une application de se baser sur des composants créés sur différents périphériques, 
+ainsi que sur des images hors écran.
+
+Graphics2D : Cette classe Graphics2D étend la classe Graphics pour fournir un contrôle plus sophistiqué de la géométrie, 
+des transformations de coordonnées, de la gestion des couleurs et de la présentation du texte. 
+Il s'agit de la classe fondamentale pour le rendu de formes, de textes et d'images à deux dimensions sur la plate-forme Java (tm).
+
+JFrame : Une Frame est un cadre est une fenêtre de niveau supérieur avec un titre et une bordure
+La JFrame est quant à elle une version étendue de java.awt.Frame qui ajoute la prise en charge de l'architecture de composant JFC / Swing.
+
+JPanel : Un JPanel est un conteneur élémentaire destiné à contenir d'autres composants. 
+Il est muni d'un gestionnaire de placement qui gère la stratégie de placement des différents composants contenus dans le panneau.
+
+La relation entre JFrame & JPanel : "frame ou une jframe" est la fenêtre de l'application, 
+et "le panel ou le jpanel" est le ou les "panneau(x)" qui vont  permettre d'organiser les éléments dans la fenêtre. 
+On peut mettre autant de (j)panel qu'on veut dans la (j)frame, 
+et on les organises comme on le souhaite (avec les layouts).
+
+3) La foction de chacune des instructions du main :
+1- JFrame frame = new JFrame("Java Avancé - Graphic Display"); : On crée une fênetre vide avec un titre.
+2- frame.setSize(new Dimension(500,500));: (Hérité de awt.Window) Modifie la taille de ce composant afin qu'il ait une largeur de 500 et une hauteur de 500.
+3- frame.setVisible(true); : (Hérité de awt.Window) Affiche ou masque cette fenêtre en fonction de la valeur du paramètre.
+4- rame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); : Définit l'opération qui se produira par défaut lorsque l'utilisateur initiera une "fermeture" sur ce cadre.
+5- MyDisplay d = new MyDisplay(); : Crée une instance de fr.dauphine.ja.haouiliahmed.view.MyDisplay 
+6- frame.add(d); : ajoute un composant à notre fenêtre.
+
+4)  la méthode "void paintComponent(Graphics g)" est une méthode de javax.swing.JComponent.
+Il faut que frame.setVisible(true) soit à la fin.
+
+5) à quel autre moment cette méthode est-elle appelée ? 
+Cette méthode est appelée parce que l'utilisateur a fait quelque chose avec l'interface utilisateur qui nécessitait d'être redessiné, 
+ou parce que le code a explicitement demandé qu'elle soit redessinée. 
+Directement : On l'appelle automatiquement quand la frame devient visible.
+Indirectement : Lorsqu'un Listeners (souris, boutons, clavier, ...) est appelé, 
+le code apporte souvent des modifications qui doivent être affichées dans votre zone graphique.
+
+6) Quelle différence fondamentale y a t’il entre le packagejava.awt et le packagejavax.swing ?
+J'ai repris trois grande différence mais il en existe d'autres (https://www.stechies.com/difference-between-awt-swing/)
+
+*1 Dépendance de la plateforme :
+AWT : Les composants AWT dépendent de la nature de la plate-forme.
+SWING : Les composants Java Swing ne dépendent pas de la nature de la plate-forme. Ils sont purement scriptés en Java.
+
+*2 Poids :
+AWT : Application lourde.
+SWING : Généralement légers, les composants Swing sont conçus pour s’asseoir sur les composants AWT et effectuer leurs tâches. 
+		Ces composants sont généralement légers car ils ne nécessitent aucun objet de système d'exploitation natif pour implémenter leurs fonctionnalités. 
+		JFrame et Jdialog sont considérés comme des poids lourds car ils possèdent un pair. 
+		Par conséquent, des composants tels que Jbutton, JtextArea, etc. sont considérés comme légers car ils ne possèdent aucun homologue de système d'exploitation.
+
+*3 Nombre de composants: 
+AWT : plus petit nombre par rapport à SWING.
+
+Exercice 2)
+
+Exercice 3) 
+L'interface a pour but de recevoir des événements de mouvement de souris sur un composant. 
+
+
+
+
+
